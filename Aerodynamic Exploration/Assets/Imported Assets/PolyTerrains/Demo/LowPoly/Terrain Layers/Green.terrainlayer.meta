@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 47c56e682264a80459835ab5bde86e11
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 219992
+  packageName: PolyTerrain - Blocky & Low Poly terrain styles
+  packageVersion: 1.1
+  assetPath: Assets/PolyTerrains/Demo/LowPoly/Terrain Layers/Green.terrainlayer
+  uploadId: 603663

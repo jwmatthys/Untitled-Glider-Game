@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 94c3fe81aff32344bb44bd3dfdc35619
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 219992
+  packageName: PolyTerrain - Blocky & Low Poly terrain styles
+  packageVersion: 1.1
+  assetPath: Assets/PolyTerrains/Demo/Blocky/Block UVs Assets/mycelium.asset
+  uploadId: 603663

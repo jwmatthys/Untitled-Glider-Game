@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a21a86f3308c49858bef3ca377e9412b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 485f119d853c48a4fb1441ba8e1cc9f8, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 219992
+  packageName: PolyTerrain - Blocky & Low Poly terrain styles
+  packageVersion: 1.1
+  assetPath: Assets/PolyTerrains/Sources/PolyTerrainMaster.cs
+  uploadId: 603663

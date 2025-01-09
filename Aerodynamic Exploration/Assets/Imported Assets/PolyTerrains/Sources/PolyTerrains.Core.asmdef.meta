@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8d15bffbf7ba24c4990dadc76523cbab
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 219992
+  packageName: PolyTerrain - Blocky & Low Poly terrain styles
+  packageVersion: 1.1
+  assetPath: Assets/PolyTerrains/Sources/PolyTerrains.Core.asmdef
+  uploadId: 603663

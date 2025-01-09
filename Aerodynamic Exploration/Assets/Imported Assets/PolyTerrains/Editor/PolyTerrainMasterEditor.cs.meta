@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: b926ad813654464da8523e86f1ef50fe
+timeCreated: 1656518529
+AssetOrigin:
+  serializedVersion: 1
+  productId: 219992
+  packageName: PolyTerrain - Blocky & Low Poly terrain styles
+  packageVersion: 1.1
+  assetPath: Assets/PolyTerrains/Editor/PolyTerrainMasterEditor.cs
+  uploadId: 603663
