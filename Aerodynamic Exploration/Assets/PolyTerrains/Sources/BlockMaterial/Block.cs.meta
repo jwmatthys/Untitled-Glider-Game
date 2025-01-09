@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 0019d976a29e4e69a72034842649f20a
+timeCreated: 1643140713
+AssetOrigin:
+  serializedVersion: 1
+  productId: 219992
+  packageName: PolyTerrain - Blocky & Low Poly terrain styles
+  packageVersion: 1.1
+  assetPath: Assets/PolyTerrains/Sources/BlockMaterial/Block.cs
+  uploadId: 603663

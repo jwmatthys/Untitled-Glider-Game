@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 720e29fe18718894496371f445a3ef8d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 219992
+  packageName: PolyTerrain - Blocky & Low Poly terrain styles
+  packageVersion: 1.1
+  assetPath: Assets/PolyTerrains/Demo/Blocky/Terrain Layers/DeadGrass.terrainlayer
+  uploadId: 603663

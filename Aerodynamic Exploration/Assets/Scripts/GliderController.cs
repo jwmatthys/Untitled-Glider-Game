@@ -5,11 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GliderController : MonoBehaviour
 {
-    public Transform springArmTransform;
-    public Camera characterCamera;
-
-    public Rigidbody rootRigidbody;
-
     private GliderFlyingSystem gliderFlyingSystem;
 
     private Airflow airflow;
@@ -18,28 +13,17 @@ public class GliderController : MonoBehaviour
 
     public bool autoTakeOff;
 
-    public float reloadSeconds = 5f;
+    public float reloadSeconds = 3f;
     
     public float autoTakeOffSpeed = 10.0f;
-
-    public float cameraSpeed = 300.0f;
-
-    private float targetSpringArmRotationX, targetSpringArmRotationY;
-
-    [Header("Mobile")]
-    public bool mobileInputControl;
-    public float mobileCameraSpeed = 300.0f;
-    private float screenCenterX;
-
+    
     void Start()
     {
         gliderFlyingSystem = this.GetComponent<GliderFlyingSystem>();
 
         if (autoTakeOff)
             gliderFlyingSystem.TakeOff(autoTakeOffSpeed);
-
-        screenCenterX = screenCenterX = Screen.width / 2.0f;
-
+        
         if (activated)
             Activate();
     }
@@ -48,23 +32,13 @@ public class GliderController : MonoBehaviour
     {
         if (activated)
         {
-            if (!mobileInputControl)
-            {
-                //PCCameraControlLogic();
-                PCInputControlLogic();
-            }
-            else
-            {
-                MobileCameraControlLogic();
-            }
+            HandleInput();
         }
     }
     
     private void Activate()
     {
         activated = true;
-        characterCamera.enabled = true;
-        characterCamera.GetComponent<AudioListener>().enabled = true;
     }
     
     
@@ -72,78 +46,18 @@ public class GliderController : MonoBehaviour
     public void Deactivate()
     {
         activated = false;
-        characterCamera.enabled = false;
-        characterCamera.GetComponent<AudioListener>().enabled = false;
     }
 
-    void PCCameraControlLogic()
+    void HandleInput()
     {
-        targetSpringArmRotationX = springArmTransform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y") * cameraSpeed * Time.deltaTime;
-        targetSpringArmRotationY = springArmTransform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * cameraSpeed * Time.deltaTime;
-
-        springArmTransform.rotation = Quaternion.Euler(targetSpringArmRotationX, targetSpringArmRotationY, 0.0f);
+        gliderFlyingSystem.AddPitchInput(Input.GetAxis("Pitch"));
+        gliderFlyingSystem.AddRollInput(Input.GetAxis("Roll"));
+        gliderFlyingSystem.AddYawInput(Input.GetAxis("Yaw"));
+        if (Input.GetAxis("Yaw") == 0f) gliderFlyingSystem.StopYawInput();
+        if (Input.GetKey(KeyCode.Return)) StartCoroutine(ReloadScene(0f));
+        if (Input.GetKey(KeyCode.Escape)) Application.Quit();
     }
-
-    void MobileCameraControlLogic()
-    {
-        // Temporarily use mouse to simulate the touch
-        if (Input.GetMouseButton(0) && Input.mousePosition.x > screenCenterX)
-        {
-            targetSpringArmRotationX = springArmTransform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y") * mobileCameraSpeed * Time.deltaTime;
-            targetSpringArmRotationY = springArmTransform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * mobileCameraSpeed * Time.deltaTime;
-        }
-        else
-        {
-            targetSpringArmRotationX = springArmTransform.rotation.eulerAngles.x;
-            targetSpringArmRotationY = springArmTransform.rotation.eulerAngles.y;
-        }
-
-        // Only detects on mobile devices
-        //if (Input.touchCount > 0)
-        //{
-        //    for (var i = 0; i < Input.touchCount; i++)
-        //    {
-        //        if (Input.GetTouch(i).position.x > screenCenterX && Input.GetTouch(i).phase == TouchPhase.Moved)
-        //        {
-        //            targetSpringArmRotationX = springArmTransform.rotation.eulerAngles.x - Input.GetTouch(i).deltaPosition.y * mobileCameraSpeed * Time.deltaTime;
-        //            targetSpringArmRotationY = springArmTransform.rotation.eulerAngles.y + Input.GetTouch(i).deltaPosition.x * mobileCameraSpeed * Time.deltaTime;
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    targetSpringArmRotationX = springArmTransform.rotation.eulerAngles.x;
-        //    targetSpringArmRotationY = springArmTransform.rotation.eulerAngles.y;
-        //}
-
-        springArmTransform.rotation = Quaternion.Euler(targetSpringArmRotationX, targetSpringArmRotationY, 0.0f);
-    }
-
-    void PCInputControlLogic()
-    {
-        // Hold down to turn left / right
-        if (Input.GetKey(KeyCode.Q))
-            gliderFlyingSystem.AddYawInput(-1.0f);
-        else if (Input.GetKey(KeyCode.E))
-            gliderFlyingSystem.AddYawInput(1.0f);
-
-        if (Input.GetKeyUp(KeyCode.Q))
-            gliderFlyingSystem.StopYawInput();
-        else if (Input.GetKeyUp(KeyCode.E))
-            gliderFlyingSystem.StopYawInput();
-
-        // Point up / down
-        if (Input.GetKey(KeyCode.S))
-            gliderFlyingSystem.AddPitchInput(-1.0f);
-        else if (Input.GetKey(KeyCode.W))
-            gliderFlyingSystem.AddPitchInput(1.0f);
-
-        // Roll to have a sharp turn left / right
-        if (Input.GetKey(KeyCode.A))
-            gliderFlyingSystem.AddRollInput(-1.0f);
-        else if (Input.GetKey(KeyCode.D))
-            gliderFlyingSystem.AddRollInput(1.0f);
-    }
+    
 
     public void MobileTurnLeft()
     {
@@ -207,14 +121,14 @@ public class GliderController : MonoBehaviour
             if (gliderFlyingSystem.inAir)
             {
                 gliderFlyingSystem.Land();
-                StartCoroutine(ReloadScene());
+                StartCoroutine(ReloadScene(reloadSeconds));
             }
         }
     }
 
-    private IEnumerator ReloadScene()
+    private IEnumerator ReloadScene(float seconds)
     {
-        yield return new WaitForSeconds(reloadSeconds);
+        yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     

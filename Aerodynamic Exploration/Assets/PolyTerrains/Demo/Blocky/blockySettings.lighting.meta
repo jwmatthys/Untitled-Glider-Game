@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cf07cb93900af9e4ea56a086017f0a2a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 219992
+  packageName: PolyTerrain - Blocky & Low Poly terrain styles
+  packageVersion: 1.1
+  assetPath: Assets/PolyTerrains/Demo/Blocky/blockySettings.lighting
+  uploadId: 603663
